@@ -14,17 +14,17 @@ $password = $_POST['password'];
 
 if ($username&&$password) 
 {
-	$conn = mysql_connect("localhost","root","")
+	$conn = mysqli_connect("localhost","root","",)//kesalahan ejaan variable mysqli
 	or die("Not Connect to the database");
-	mysql_select_db("farmasi") or die("incorrect database");
+	mysqli_select_db($conn,"farmasi") or die("incorrect database");//tiada variable $conn
 
-	$query = mysql_query("SELECT * FROM user WHERE username= '$username'");
+	$query = mysqli_query($conn,"SELECT * FROM user WHERE username= '$username'");//tiada variable $conn
 
-	$numrows = mysql_num_rows($query);
+	$numrows = mysqli_num_rows($query);//kesalahan ejaan variable $mysqli
 
 	if($numrows!==0)
 	{
-		while ($row = mysql_fetch_assoc($query)) 
+		while ($row = mysqli_fetch_assoc($query)) //kesalahan ejaan variable $mysqli
 		{
 			$dbusername = $row['USERNAME'];
 			$dbpassword = $row['PASSWORD'];	
@@ -42,7 +42,7 @@ if ($username&&$password)
 			}
 			
 			else
-				header("location: users.php");
+				header("location: user.php");//kesalahan ejaan nama fail
 		}
 		else
 			?>
